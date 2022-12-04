@@ -19,6 +19,7 @@ public class UserService {
 
 
 
+
     public Uni<User> findById(long id) {
         return User.<User>findById(id)
                 .onItem().ifNull().failWith(() -> new ObjectNotFoundException(id, "User"));

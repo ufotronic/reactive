@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/api/v1/projects")
-@RolesAllowed("user")
+//@RolesAllowed("user")
 public class ProjectResource {
 
     private final ProjectService projectService;
