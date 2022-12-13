@@ -83,7 +83,6 @@ public class UserService {
         return BcryptUtil.matches(password, user.password);
     }
 
-
     public Uni<User> getCurrentUser() {
         return findByName(jwt.getName());
     }

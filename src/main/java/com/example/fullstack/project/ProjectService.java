@@ -35,15 +35,14 @@ public class ProjectService {
 
     public Uni<List<Project>> listForUser() {
 
-        //return userService.getCurrentUser().chain(user -> Project.find("user", user).list());
-        return Project.listAll();
+        return userService.getCurrentUser().chain(user -> Project.find("user", user).list());
     }
 
     @ReactiveTransactional
     public Uni<Project> create(Project project) {
         return userService.getCurrentUser()
                 .chain(user -> {
-                    project.user = (User) user;
+                    project.user = user;
                     return project.persistAndFlush();
                 });
     }
@@ -61,4 +60,6 @@ public class ProjectService {
                 .chain(p -> Task.update("project = null where project = ?1", p)
                         .chain(i -> p.delete()));
     }
+
+
 }
