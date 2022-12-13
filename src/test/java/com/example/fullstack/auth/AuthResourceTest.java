@@ -22,4 +22,14 @@ class AuthResourceTest {
                 .body(not(emptyString()));
     }
 
+    @Test
+    void loginInvalidCredentials() {
+        given()
+                .body("{\"name\":\"admin\",\"password\":\"not-quarkus\"}")
+                .contentType(ContentType.JSON)
+                .when().post("/api/v1/auth/login")
+                .then()
+                .statusCode(401);
+    }
+
 }
